@@ -1,4 +1,4 @@
-import { EntityRepository, getRepository, Repository } from 'typeorm';
+import { EntityRepository, Repository } from 'typeorm';
 // import Category from '../models/Category';
 import Transaction from '../models/Transaction';
 
@@ -12,11 +12,9 @@ interface Balance {
 class TransactionsRepository extends Repository<Transaction> {
   public async getBalance(): Promise<Balance> {
     // const categoryRepository = getRepository(Category);
-    const transactionRepository = getRepository(Transaction);
+    // const transactionRepository = getRepository(Transaction);
 
-    const { income, outcome } = await (
-      await transactionRepository.find()
-    ).reduce(
+    const { income, outcome } = await (await this.find()).reduce(
       (acc: Balance, transaction: Transaction) => {
         // eslint-disable-next-line no-unused-expressions
         transaction.type === 'income'

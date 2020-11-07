@@ -32,7 +32,7 @@ class CreateTransactionService {
       throw new AppError('transfer does not accept limit reached');
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line prefer-const
     let category_id = '';
 
     const findCategoryTitle = await categoryRepository.findOne({

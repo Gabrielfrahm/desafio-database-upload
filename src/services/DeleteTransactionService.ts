@@ -11,10 +11,10 @@ class DeleteTransactionService {
     });
 
     if (!findTransaction) {
-      throw new AppError('ID not Found');
+      throw new AppError('Transaction not exists!');
     }
 
-    await transactionRepository.delete({ id });
+    await transactionRepository.remove(findTransaction);
   }
 }
 
